@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\Profile;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -32,6 +33,7 @@ class AppFixtures extends Fixture
             )
         );
         $firstUser -> setRoles(['ROLE_USER']);
+
         $firstUser->setCreatedAt(new \DateTimeImmutable());
         $manager -> persist($firstUser);
 
@@ -43,6 +45,7 @@ class AppFixtures extends Fixture
                 '1234h3h'
             )
         );
+
         $secondUser->setCreatedAt(new \DateTimeImmutable());
         $manager -> persist($secondUser);
 
@@ -55,8 +58,37 @@ class AppFixtures extends Fixture
             )
         );
         $adminUser -> setRoles(['ROLE_ADMIN']);
+
         $adminUser->setCreatedAt(new \DateTimeImmutable());
         $manager -> persist($adminUser);
+
+        //Profile
+        $firstUserProfile = new Profile();
+        $firstUserProfile->setFullname("first user");
+        $firstUserProfile->setPseudo("firstUser");
+        $firstUserProfile->setBio("i'm the first user");
+        $firstUserProfile->setBirthDate(new \DateTimeImmutable('2003-03-13'));
+        $firstUserProfile->setCreatedAt(new \DateTimeImmutable());
+        $firstUserProfile->setUser($firstUser);
+        $manager->persist($firstUserProfile);
+
+        $secondUserProfile = new Profile();
+        $secondUserProfile->setFullname("second user");
+        $secondUserProfile->setPseudo("secondUser");
+        $secondUserProfile->setBio("i'm the second user");
+        $secondUserProfile->setBirthDate(new \DateTimeImmutable('2007-07-17'));
+        $secondUserProfile->setCreatedAt(new \DateTimeImmutable());
+        $secondUserProfile->setUser($secondUser);
+        $manager->persist($secondUserProfile);
+
+        $adminUserProfile = new Profile();
+        $adminUserProfile->setFullname("almighty admin");
+        $adminUserProfile->setPseudo("admin");
+        $adminUserProfile->setBio("your beloved admin");
+        $adminUserProfile->setBirthDate(new \DateTimeImmutable('2000-01-10'));
+        $adminUserProfile->setCreatedAt(new \DateTimeImmutable());
+        $adminUserProfile->setUser($adminUser);
+        $manager->persist($adminUserProfile);
 
         //Category
         $firstCategory = new Category();
@@ -81,6 +113,7 @@ class AppFixtures extends Fixture
         $firstPost->setDescription("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfffffffffffff");
         $firstPost->setOwner($firstUser);
         $firstPost->addCategory($firstCategory);
+        $firstPost->setCreatedAt(new \DateTimeImmutable());
         $manager->persist($firstPost);
 
         $secondPost = new Post();
@@ -88,6 +121,7 @@ class AppFixtures extends Fixture
         $secondPost->setDescription("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfffffffffffff");
         $secondPost->setOwner($firstUser);
         $secondPost->addCategory($secondCategory);
+        $secondPost->setCreatedAt(new \DateTimeImmutable());
         $manager->persist($secondPost);
 
         $thirdPost = new Post();
@@ -95,6 +129,7 @@ class AppFixtures extends Fixture
         $thirdPost->setDescription("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfffffffffffff");
         $thirdPost->setOwner($adminUser);
         $thirdPost->addCategory($secondCategory);
+        $thirdPost->setCreatedAt(new \DateTimeImmutable());
         $manager->persist($thirdPost);
 
         $manager->flush();
