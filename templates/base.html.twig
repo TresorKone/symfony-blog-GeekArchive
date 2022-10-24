@@ -54,7 +54,7 @@
                                 <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                             </li>
                             <li>
-                                <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Post</a>
+                                <a href="{{ path('app_post_add') }}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Post</a>
                             </li>
                             <li>
                                 <a href="{{ path('app_front_logout') }}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
@@ -94,6 +94,12 @@
             </div>
         </div>
     </nav>
+
+    <div class="w-full md:w-2/3 mx-auto">
+        {% for info in app.flashes('success') %}
+            <div class="p-3 border-teal-600 rounded-lg text-zinc-600 bg-amber-400 dark:text-zinc-400">{{ info }}</div>
+        {% endfor %}
+    </div>
 
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
     {% block body %}{% endblock %}
