@@ -3,6 +3,13 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+
+
+    <h2 class="mb-8 underline underline-offset-8 text-center text-lg font-semibold text-gray-900 dark:text-white under">
+        {{ category.slug }}
+    </h2>
+
+
     {% for post in posts %}
         <ol class="h-full relative border-l border-gray-400 dark:border-white">
             <li class="mb-10 ml-4">

@@ -60,7 +60,7 @@ class PostController extends AbstractController
             $this->addFlash('success', 'The world might see your post now');
 
             //Redirect
-            return $this->redirectToRoute('app_front_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_index_post', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm(
@@ -91,7 +91,7 @@ class PostController extends AbstractController
             $this->addFlash('success', 'your post have been updated now');
 
             //Redirect
-            return $this->redirectToRoute('app_front_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_index_post', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm(
@@ -103,6 +103,15 @@ class PostController extends AbstractController
             ]
         );
 
+    }
+
+    #[Route('/all-posts', name: 'app_index_post')]
+    public function index(PostRepository $postRepository, CategoryRepository $categories): Response
+    {
+        return $this->render('front/post/index.html.twig', [
+            'postRepository' => $postRepository->findAll(),
+            'categories' => $categories->findAll()
+        ]);
     }
 
 }

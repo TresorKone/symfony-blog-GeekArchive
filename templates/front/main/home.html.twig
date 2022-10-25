@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Welcome! {% endblock %}
+
+{% block body %}
+
+    <ol class="relative border-l border-gray-200 dark:border-gray-700">
+
+        <li class="mb-10 ml-6">
+        <span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+            <img class="rounded-full shadow-lg" src="{{ asset('assets/img/icons8-arcade-64.png') }}" alt="Thomas Lean image"/>
+        </span>
+            <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm dark:bg-gray-700 dark:border-gray-600">
+                <div class="justify-between items-center mb-3 sm:flex">
+                    <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">2 hours ago</time>
+                    <div class="text-md font-normal text-gray-500 lex dark:text-gray-300"><a href="#" class="font-semibold text-gray-900 dark:text-white hover:underline">Welcome on the Geek Archive</a></div>
+                </div>
+                <div class="p-3 text-lg italic font-normal text-gray-500 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300">Hello dear visitor, welcome to the Geek archive.
+                    This site is a forum where you can publish an article related to the universe of retro gaming, share a piece of history, give other users some tips, share your technical knowledge about the category "DataFrame" for example or just talking about everything and nothing with your friends</div>
+            </div>
+        </li>
+        <li class="ml-6">
+
+            <div class="justify-between items-center p-4 bg-white rounded-lg border border-gray-200 shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
+                <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">1 day ago</time>
+                <div class="text-sm font-normal text-gray-500 lex dark:text-gray-300">I hope you will appreciate your visit to my website, if you have any advice or you want to contact me my contact details are present on the site or simply via the <a href="{{ path('app_contact') }}" class="font-semibold text-blue-600 dark:text-blue-500 hover:underline">contact form.</a> Thanks</div>
+            </div>
+        </li>
+
+    </ol>
+
+{% endblock %}
