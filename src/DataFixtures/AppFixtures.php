@@ -125,7 +125,7 @@ class AppFixtures extends Fixture
         $manager->persist($secondPost);
 
         $thirdPost = new Post();
-        $thirdPost->setTitle("test second post");
+        $thirdPost->setTitle("test third post");
         $thirdPost->setDescription("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfffffffffffff");
         $thirdPost->setOwner($adminUser);
         $thirdPost->addCategory($secondCategory);

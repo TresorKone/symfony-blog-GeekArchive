@@ -22,7 +22,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
 
-    #[Route('/posts/add-post', name: 'app_post_add')]
+    #[Route('/post/{slug}', name: 'app_show_post')]
+    //#[Entity('slug', expr: 'repository.find(slug)')]
+    public function show($slug, PostRepository $postRepository): Response
+    {
+        $post = $postRepository->findOneBySlug($slug);
+
+        return $this->render('front/post/show.html.twig', [
+            'post' => $post,
+            'slug' => $slug,
+        ]);
+
+    }
+
+    #[Route('/post/add-post', name: 'app_post_add', priority: 2)]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function addForm(Request $request, PostRepository $postRepository, EntityManagerInterface $manager): Response
     {
@@ -56,11 +69,10 @@ class PostController extends AbstractController
 
     }
 
-    #[Route('/posts/{id}/edit-post', name: 'app_post_edit')]
-    //#[Entity('Post', options: ['id' => 'id'])]
-    public function editForm(Post $post, Request $request, PostRepository $postRepository, EntityManagerInterface $manager): Response
-    {
+    #[Route('/posts/{slug}/edit-post', name: 'app_post_edit')]
 
+    public function editForm($slug, Post $post, Request $request, PostRepository $postRepository, EntityManagerInterface $manager): Response
+    {
 
 
         $form = $this->createForm(PostType::class, $post);
@@ -83,7 +95,7 @@ class PostController extends AbstractController
             'front/post/edit-post-form.html.twig',
             [
                 'form' => $form,
-                'post' => $post
+                'slug' => $slug
             ]
         );
 
