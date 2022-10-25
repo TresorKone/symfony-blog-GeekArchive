@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -42,6 +43,19 @@ class CategoryRepository extends ServiceEntityRepository
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */
+
+
+    public function displayByCategory(Post $post)
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('SELECT c FROM App\Entity\Category c WHERE c.posts = :posts');
+
+        $query->setParameter('post', $post);
+
+        return $category = $query->getResult();
+
+    }
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('c')

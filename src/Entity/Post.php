@@ -12,8 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
-    const EDIT = "";
-    const VIEW = "";
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
 use DateTimeImmutable;
 
@@ -24,20 +25,21 @@ class PostController extends AbstractController
 
     #[Route('/post/{slug}', name: 'app_show_post')]
     //#[Entity('slug', expr: 'repository.find(slug)')]
-    public function show($slug, PostRepository $postRepository): Response
+    public function show($slug, PostRepository $postRepository, CategoryRepository $categories): Response
     {
         $post = $postRepository->findOneBySlug($slug);
 
         return $this->render('front/post/show.html.twig', [
             'post' => $post,
             'slug' => $slug,
+            'categories' => $categories->findAll()
         ]);
 
     }
 
     #[Route('/post/add-post', name: 'app_post_add', priority: 2)]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function addForm(Request $request, PostRepository $postRepository, EntityManagerInterface $manager): Response
+    public function addForm(Request $request, PostRepository $postRepository, EntityManagerInterface $manager, CategoryRepository $categories): Response
     {
 
 
@@ -64,6 +66,7 @@ class PostController extends AbstractController
         return $this->renderForm(
             'front/post/add-post-form.html.twig', [
                 'form' => $form,
+                'categories' => $categories->findAll()
             ]
         );
 
@@ -71,7 +74,7 @@ class PostController extends AbstractController
 
     #[Route('/posts/{slug}/edit-post', name: 'app_post_edit')]
 
-    public function editForm($slug, Post $post, Request $request, PostRepository $postRepository, EntityManagerInterface $manager): Response
+    public function editForm(CategoryRepository $categories, $slug, Post $post, Request $request, PostRepository $postRepository, EntityManagerInterface $manager): Response
     {
 
 
@@ -95,7 +98,8 @@ class PostController extends AbstractController
             'front/post/edit-post-form.html.twig',
             [
                 'form' => $form,
-                'slug' => $slug
+                'slug' => $slug,
+                'categories' => $categories->findAll()
             ]
         );
 
