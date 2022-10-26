@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
         $firstUser -> setPassword(
             $this -> userPasswordHasher -> hashPassword(
                 $firstUser,
-                '1234h3h'
+                'azerty123!'
             )
         );
         $firstUser -> setRoles(['ROLE_USER']);
@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
         $secondUser -> setPassword(
             $this -> userPasswordHasher -> hashPassword(
                 $secondUser,
-                '1234h3h'
+                'azerty123!'
             )
         );
 
@@ -54,7 +54,7 @@ class AppFixtures extends Fixture
         $adminUser -> setPassword(
             $this -> userPasswordHasher -> hashPassword(
                 $adminUser,
-                '1234h3h'
+                'azerty123!'
             )
         );
         $adminUser -> setRoles(['ROLE_ADMIN']);
