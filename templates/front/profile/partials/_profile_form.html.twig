@@ -1,0 +1,31 @@
+
+
+    <div class='text-sm text-zinc-600 dark:text-zinc-400 font-medium'>
+        {{ form_label(form.fullname) }}
+    </div>
+    <div class=''>
+        {{ form_widget(form.fullname, {'attr': {'class': 'w-full shadow-sm border-zinc-400 dark:border-transparent dark:text-zinc-600 rounded-md border p-2 mt-1 mb-2'}}) }}
+    </div>
+
+    <div class='text-sm text-zinc-600 dark:text-zinc-400 font-medium'>
+        {{ form_label(form.bio) }}
+    </div>
+    <div class=''>
+        {{ form_widget(form.bio, {'attr': {'class': 'w-full shadow-sm border-zinc-400 dark:border-transparent dark:text-zinc-600 rounded-md border p-2 mt-1 mb-2'}}) }}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class='text-sm text-zinc-600 dark:text-zinc-400 font-medium'>
+            <div>{{ form_label(form.pseudo) }}</div>
+            <div>
+                {{ form_widget(form.pseudo, {'attr': {'class': 'block w-full shadow-sm border-zinc-400 dark:border-transparent dark:text-zinc-600 rounded-md border p-2 mt-1 mb-2'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class='text-sm text-zinc-600 dark:text-zinc-400 font-medium'>
+        {{ form_label(form.birthDate) }}
+    </div>
+    <div class=''>
+        {{ form_widget(form.birthDate, {'attr': {'class': 'w-full shadow-sm border-zinc-400 dark:border-transparent dark:text-zinc-600 rounded-md border p-2 mt-1 mb-2'}}) }}
+    </div>

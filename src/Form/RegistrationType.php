@@ -76,10 +76,10 @@ class RegistrationType extends AbstractType
                     ]);
                 }
             })
-        ;
+
             //->add('createdAt')
             //->add('updatedAt')
-            //->add('profile')
+            ->add('profile', ProfileType::class);
         ;
     }
 

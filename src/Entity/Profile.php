@@ -26,7 +26,7 @@ class Profile
     #[ORM\Column(length: 800, nullable: true)]
     private ?string $profilePicture = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $birthDate = null;
 
     #[ORM\Column]
