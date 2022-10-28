@@ -77,6 +77,7 @@ class PostController extends AbstractController
     public function editForm(CategoryRepository $categories, $slug, Post $post, Request $request, PostRepository $postRepository, EntityManagerInterface $manager): Response
     {
 
+        $this->denyAccessUnlessGranted('MANAGE', $post);
 
         $form = $this->createForm(PostType::class, $post);
 

@@ -35,6 +35,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
+
     #[Route('/profile-form', name: 'app_form_profile')]
     public function profileForm(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categories): Response
     {
