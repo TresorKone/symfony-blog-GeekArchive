@@ -3,18 +3,19 @@
 {% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Trésor/PhpstormProjects/symfony-blog-GeekArchive/src/Controller/Front/ProfileController.php'|file_link(0) }}">src/Controller/Front/ProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Trésor/PhpstormProjects/symfony-blog-GeekArchive/templates/front/profile/index.html.twig'|file_link(0) }}">templates/front/profile/index.html.twig</a></code></li>
-    </ul>
+<div class="pt-6">
+    <ol class="relative border-l border-gray-200 dark:border-gray-700">
+        <li class="mb-10 ml-6">
+        <span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+            <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-user-profiles-ux-and-ui-icons-flaticons-lineal-color-flat-icons.png" alt="profile logo">
+        </span>
+            <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">{{ currentUser.profile.fullname }} <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{{ currentUser.profile.pseudo }}</span></h3>
+            <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ currentUser.profile.birthDate | date("M j, Y") }}</time>
+            <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{{ currentUser.profile.bio }}</p>
+            {% for post in currentUser.posts %}
+                <a href="{{ path('app_show_post', { slug: post.slug}) }}" class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"> <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-video-game-geek-culture-flaticons-lineal-color-flat-icons-8.png" alt=""> {{ post.title }} </a>
+            {% endfor %}
+        </li>
+    </ol>
 </div>
 {% endblock %}

@@ -2,6 +2,8 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Profile;
+use App\Entity\User;
 use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
@@ -16,19 +18,18 @@ class MainController extends AbstractController
     {
         return $this->render('front/main/home.html.twig', [
             'postRepository' => $postRepository->findAll(),
-            'categories' => $categories->findAll()
+            'categories' => $categories->findAll(),
         ]);
     }
 
-    #[Route('/test', name: 'app_front_hssome')]
-    public function base( UserRepository $userRepository, $postRepository, CategoryRepository $categories): Response
+
+    public function base($postRepository, CategoryRepository $categories,): Response
     {
 
         return $this->render('base.html.twig', [
             'postRepository' => $postRepository->findAll(),
             'categories' => $categories->findAll(),
-            'email' => $email,
-            'currentUser' => $currentUser
+
         ]);
     }
 

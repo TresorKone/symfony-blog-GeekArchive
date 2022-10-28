@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile Settings{% endblock %}
+
+{% block body %}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div>{{ form_errors(form) }}</div>
+
+    <div>
+        {{ include ('front/profile/partials/_profile_form.html.twig', { form: form }) }}
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

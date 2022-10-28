@@ -67,8 +67,8 @@ class AppFixtures extends Fixture
         $firstUserProfile->setFullname("first user");
         $firstUserProfile->setPseudo("firstUser");
         $firstUserProfile->setBio("i'm the first user");
-        $firstUserProfile->setBirthDate(new \DateTimeImmutable('2003-03-13'));
-        $firstUserProfile->setCreatedAt(new \DateTimeImmutable());
+        $firstUserProfile->setBirthDate(new \DateTime('2003-03-13'));
+        //$firstUserProfile->setCreatedAt(new \DateTimeImmutable());
         $firstUserProfile->setUser($firstUser);
         $manager->persist($firstUserProfile);
 
@@ -76,8 +76,8 @@ class AppFixtures extends Fixture
         $secondUserProfile->setFullname("second user");
         $secondUserProfile->setPseudo("secondUser");
         $secondUserProfile->setBio("i'm the second user");
-        $secondUserProfile->setBirthDate(new \DateTimeImmutable('2007-07-17'));
-        $secondUserProfile->setCreatedAt(new \DateTimeImmutable());
+        $secondUserProfile->setBirthDate(new \DateTime('2007-07-17'));
+        //$secondUserProfile->setCreatedAt(new \DateTimeImmutable());
         $secondUserProfile->setUser($secondUser);
         $manager->persist($secondUserProfile);
 
@@ -85,8 +85,8 @@ class AppFixtures extends Fixture
         $adminUserProfile->setFullname("almighty admin");
         $adminUserProfile->setPseudo("admin");
         $adminUserProfile->setBio("your beloved admin");
-        $adminUserProfile->setBirthDate(new \DateTimeImmutable('2000-01-10'));
-        $adminUserProfile->setCreatedAt(new \DateTimeImmutable());
+        $adminUserProfile->setBirthDate(new \DateTime('2000-01-10'));
+        //$adminUserProfile->setCreatedAt(new \DateTimeImmutable());
         $adminUserProfile->setUser($adminUser);
         $manager->persist($adminUserProfile);
 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ProfileRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,10 +28,10 @@ class Profile
     private ?string $profilePicture = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $birthDate = null;
+    private ?\DateTime $birthDate = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    //#[ORM\Column]
+    //private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
@@ -38,6 +39,9 @@ class Profile
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $slug = null;
 
     public function getId(): ?int
     {
@@ -64,6 +68,8 @@ class Profile
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        $this->setSlug((new Slugify())->slugify($this->pseudo));
 
         return $this;
     }
@@ -92,29 +98,29 @@ class Profile
         return $this;
     }
 
-    public function getBirthDate(): ?\DateTimeImmutable
+    public function getBirthDate(): ?\DateTime
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTimeImmutable $birthDate): self
+    public function setBirthDate(\DateTime $birthDate): self
     {
         $this->birthDate = $birthDate;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    //public function getCreatedAt(): ?\DateTimeImmutable
+    //{
+    //    return $this->createdAt;
+    //}
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
+    //public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    //{
+    //    $this->createdAt = $createdAt;
+    //
+    //    return $this;
+    //}
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
@@ -136,6 +142,18 @@ class Profile
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

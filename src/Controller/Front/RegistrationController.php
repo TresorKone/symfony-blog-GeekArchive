@@ -38,7 +38,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'The world might see your post now');
+            $this->addFlash('success', 'Your account has been created');
 
             return $this->redirectToRoute('app_front_home');
 
