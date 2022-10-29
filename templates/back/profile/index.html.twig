@@ -1,0 +1,88 @@
+{% extends 'Base_BackOffice.html.twig' %}
+
+{% block title %}Profile index{% endblock %}
+
+{% block body %}
+    <h1>Profile index</h1>
+
+<div class="mt-5">
+    <a href="{{ path('app_back_profile_new') }}">Create new</a>
+</div>
+
+
+            <div class="mt-5 relative shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="py-3 px-6">
+                            Id
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Full Name
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Pseudo
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Bio
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Birth Date
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            User
+                        </th>
+
+                        <th scope="col" class="py-3 px-6">
+                            Updated_at
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Show
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Edit
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for profile in profiles %}
+                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <td class="py-4 px-6">
+                                {{ profile.id }}
+                            </td>
+                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ profile.fullname }}
+                            </th>
+                            <td class="py-4 px-6">
+                                {{ profile.pseudo }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ profile.bio }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ profile.birthDate ? profile.birthDate|date('Y-m-d H:i:s') : '' }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ profile.user.email }}
+                            </td>
+
+                            <td class="py-4 px-6">
+                                {{ profile.updatedAt ? profile.updatedAt|date('Y-m-d H:i:s') : '' }}
+                            </td>
+                            <td class="py-4 px-6">
+                                <a href="{{ path('app_back_profile_show', {'id': profile.id}) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Show</a>
+                            </td>
+                            <td class="py-4 px-6">
+                                <a href="{{ path('app_back_profile_edit', {'id': profile.id}) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+{% endblock %}

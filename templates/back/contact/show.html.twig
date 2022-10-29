@@ -1,0 +1,42 @@
+{% extends 'Base_BackOffice.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <h1>Contact</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contact.id }}</td>
+            </tr>
+            <tr>
+                <th>Fullname</th>
+                <td>{{ contact.fullname }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ contact.text }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ contact.email }}</td>
+            </tr>
+            <tr>
+                <th>OtherContactWay</th>
+                <td>{{ contact.otherContactWay }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_contact_index') }}">back to list</a>
+
+    <a href="{{ path('app_back_contact_edit', {'id': contact.id}) }}">edit</a>
+
+    {{ include('back/contact/_delete_form.html.twig') }}
+{% endblock %}
