@@ -107,5 +107,10 @@
         "symfony/phpunit-bridge": "^6.1",
         "symfony/stopwatch": "6.1.*",
         "symfony/web-profiler-bundle": "6.1.*"
+    },
+    "scripts": {
+        "compile": [
+            "@php bin/console lexik:jwt:generate-keypair --overwrite --quiet --env prod"
+        ]
     }
 }
