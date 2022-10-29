@@ -24,7 +24,8 @@ class ProfileType extends AbstractType
                 DateType::class,
                 [
                     'widget' => 'single_text',
-                    'required' => false
+                    'required' => false,
+                    'empty_data' => ''
                 ]
             )
 

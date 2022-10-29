@@ -118,7 +118,7 @@ class Profile
         return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTime $birthDate): self
+    public function setBirthDate(?\DateTime $birthDate): self
     {
         $this->birthDate = $birthDate;
 
