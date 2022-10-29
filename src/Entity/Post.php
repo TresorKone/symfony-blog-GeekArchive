@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
@@ -18,9 +20,21 @@ class Post
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 10,
+        max: 255,
+        minMessage: "Your title must be at least 10 characters long !",
+        maxMessage: "Your title cannot be longer than 225 characters !"
+    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 20,
+        maxMessage: "Your description must be at least 20 characters long !"
+    )]
     private ?string $description = null;
 
     #[ORM\Column(length: 800, nullable: true)]
@@ -34,6 +48,7 @@ class Post
     private Collection $comments;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'posts')]
+    #[Assert\NotBlank]
     private Collection $category;
 
     #[ORM\Column]

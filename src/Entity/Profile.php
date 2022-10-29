@@ -7,6 +7,8 @@ use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
 class Profile
 {
@@ -16,9 +18,21 @@ class Profile
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 10,
+        max: 255,
+        minMessage: "Your full name must be at least 10 characters long !",
+        maxMessage: "Your full name cannot be longer than 225 characters !"
+    )]
     private ?string $fullname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "Your pseudo cannot be longer than 225 characters !"
+    )]
     private ?string $pseudo = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
