@@ -24,6 +24,9 @@
                     Roles
                 </th>
                 <th scope="col" class="py-3 px-6">
+                    Banned Until
+                </th>
+                <th scope="col" class="py-3 px-6">
                     Created_at
                 </th>
                 <th scope="col" class="py-3 px-6">
@@ -47,9 +50,13 @@
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ user.email }}
                     </th>
+
                     <td class="py-4 px-6">
                         {{ user.roles ? user.roles|json_encode : '' }}
                     </td>
+                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ user.temporalyBan ? user.temporalyBan|date('Y-m-d H:i:s') : '' }}
+                    </th>
 
                     <td class="py-4 px-6">
                         {{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}
