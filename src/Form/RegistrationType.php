@@ -17,6 +17,8 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
+use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
+use function Sodium\add;
 
 class RegistrationType extends AbstractType
 {
@@ -79,7 +81,8 @@ class RegistrationType extends AbstractType
 
             //->add('createdAt')
             //->add('updatedAt')
-            ->add('profile', ProfileType::class);
+            ->add('profile', ProfileType::class)
+            ->add('captcha', ReCaptchaType::class);
         ;
     }
 
