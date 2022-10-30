@@ -6,5 +6,5 @@
     
   - please don’t pay attention to the css 😂
 
-  - it is deployed via Heroku, The link is here: https://geek-archive.herokuapp.com/home.
+  - it is deployed on Heroku, The link is here: https://geek-archive.herokuapp.com/home.
   
